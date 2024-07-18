@@ -1,5 +1,5 @@
 import "./Header.css";
-import Logo from "../../../assets/logo.svg";
+import logo from "../../../assets/logo.svg";
 import trueavatar from "../../../assets/trueavatar.svg";
 
 function Header({handleAddClick, weatherData}) {
@@ -10,7 +10,7 @@ function Header({handleAddClick, weatherData}) {
 
   return (
     <header className="header">
-      <img className="header__logo" src={Logo} alt="App Logo" />
+      <img className="header__logo" src={logo} alt="App Logo" />
       <p className="header__date">{currentDate}, {weatherData.city}</p>
       <button onClick = {handleAddClick} 
       type = "button" 
@@ -20,7 +20,7 @@ function Header({handleAddClick, weatherData}) {
       </button>
       <div className="header__user-container">
         <p className="header__username">NAME</p>
-        <img src={trueavatar} alt="" className="header__avatar" />
+        <img src={trueavatar} alt="avatar" className="header__avatar" />
       </div>
     </header>
   );

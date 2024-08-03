@@ -81,8 +81,25 @@ function App() {
         setClothingItems(data);
         console.log(data);
       })
-      .catch(console.err);
+      .catch(console.error);
   }, []);
+  useEffect(() => {
+    if (!activeModal) return; // stop the effect not to add the listener if there is no active modal
+
+    const handleEscClose = (e) => {
+      // define the function inside useEffect not to lose the reference on rerendering
+      if (e.key === "Escape") {
+        handleCloseModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      // don't forget to add a clean up function for removing the listener
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   return (
     <div className="page">
@@ -105,11 +122,12 @@ function App() {
             <Route
               path="/profile"
               element={
-              <Profile 
-              handleCardClick={handleCardClick}
-              clothingItems={clothingItems}
-              handleAddClick={handleAddClick}
-               />}
+                <Profile
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
+                />
+              }
             />
           </Routes>
         </div>

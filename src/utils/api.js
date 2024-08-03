@@ -1,3 +1,4 @@
+
 const baseUrl = "http://localhost:3001";
 const headers = { "Content-Type": "application/json" };
 
@@ -12,10 +13,7 @@ function checkResponse(res) {
 function getItems(){
     return fetch(`${baseUrl}/items`)
     .then(checkResponse)
-    .catch((error) => {
-      console.error("Error fetching items:", error);
-    });
-}
+    };
 
 function deleteItemById(Id) {
     return fetch(`${baseUrl}/items/${Id}`, {

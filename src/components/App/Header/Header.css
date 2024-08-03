@@ -9,9 +9,10 @@
 }
   
 .header__add-clothes-button{
-    margin: 0 20px 0 auto;
+    margin: 0 20px 0 20px;
     border-style: none;
     cursor: pointer;
+    padding: 0;
 }
 
 .header__switch-container{
@@ -34,4 +35,12 @@
 
 .header__username{
     margin: 0;
+}
+
+.header__link{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: black;
 }

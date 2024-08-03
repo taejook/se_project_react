@@ -10,6 +10,7 @@ import Main from "./Main/Main";
 import ItemModal from "./ItemModal/ItemModal";
 import Footer from "./Footer/Footer";
 import AddItemModal from "./AddItemModal/AddItemModal";
+import Profile from "./Profile/Profile";
 import { getItems, addItem, deleteItemById } from "../../utils/api";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
@@ -97,10 +98,19 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
                 />
               }
             />
-            <Route path="/profile" element={<Footer />} />
+            <Route
+              path="/profile"
+              element={
+              <Profile 
+              handleCardClick={handleCardClick}
+              clothingItems={clothingItems}
+              handleAddClick={handleAddClick}
+               />}
+            />
           </Routes>
         </div>
         <AddItemModal
@@ -115,6 +125,7 @@ function App() {
           handleDeleteItem={handleDeleteItem}
         />
       </CurrentTemperatureUnitContext.Provider>
+      <Footer />
     </div>
   );
 }

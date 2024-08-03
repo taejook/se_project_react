@@ -20,9 +20,16 @@
   color: #fff;
 }
 
+.modal__caption{
+    margin-bottom: 0;
+}
+
 .modal__footer {
-  margin: 20px 0 32px 32px;
+  padding: 0 28px 28px 28px;
   height: 112;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal__delete {
@@ -33,9 +40,10 @@
   position: absolute;
   border: none;
   background-color: #fff;
-  margin-top: 15px;
+  margin-top: 20px;
+  right: 32px;
 }
 
-.modal__delete-btn:hover {
-    cursor: pointer;
-  }
+.modal__delete:hover {
+  cursor: pointer;
+}

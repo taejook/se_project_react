@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
@@ -8,6 +9,9 @@ import ModalWithForm from "./ModalWithForm/ModalWithForm";
 import Main from "./Main/Main";
 import ItemModal from "./ItemModal/ItemModal";
 import Footer from "./Footer/Footer";
+import AddItemModal from "./AddItemModal/AddItemModal";
+import { getItems, addItem, deleteItemById } from "../../utils/api";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -17,6 +21,8 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -31,6 +37,35 @@ function App() {
     setActiveModal("");
   };
 
+  const handleToggleSwitchChange = () => {
+    currentTemperatureUnit === "F"
+      ? setCurrentTemperatureUnit("C")
+      : setCurrentTemperatureUnit("F");
+  };
+
+  const handleDeleteItem = (id) => {
+    return deleteItemById(id)
+      .then(() => {
+        const updatedClothingItems = clothingItems.filter(
+          (item) => item._id !== id
+        );
+        setClothingItems(updatedClothingItems);
+      })
+      .catch((error) => {
+        console.error("Error deleting item:", error);
+      });
+  };
+
+  const handleAddItemSubmit = (values) => {
+    return addItem(values)
+      .then((item) => {
+        // add the item on the dom
+        setClothingItems([item, ...clothingItems]);
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -39,69 +74,47 @@ function App() {
       })
       .catch(console.error);
   }, []);
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+        console.log(data);
+      })
+      .catch(console.err);
+  }, []);
 
   return (
     <div className="page">
-      <div className="page__content">
-        <Header handleAddClick={handleAddClick} weatherData = {weatherData} />
-        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
-        <Footer />
-      </div>
-      <ModalWithForm
-        title="New Garment"
-        buttonText="Add Garment"
-        activeModal={activeModal}
-        onClose={closeActiveModal}
-        isOpen={activeModal === "add-garment"}
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <label htmlFor="name" className="modal__label">
-          Name
-          <input
-            type="text"
-            className="modal__input"
-            id="name"
-            placeholder="Name"
-          />
-        </label>
-        <label htmlFor="imageUrl" className="modal__label">
-          Image{" "}
-          <input
-            type="url"
-            className="modal__input"
-            id="imageUrl"
-            placeholder="Image URL"
-          />
-        </label>
-        <fieldset className="modal__radio-buttons">
-          <legend className="modal__legend">Select the weather type:</legend>
-          <label
-            htmlFor="Hot"
-            className="modal__label modal__label_type_radio"
-          >
-            <input type="radio" id="Hot" name= "radio" className="modal__radio-input" />
-            <p className="modal__radio-text">Hot</p>
-          </label>
-          <label
-            htmlFor="Warm"
-            className="modal__label modal__label_type_radio"
-          >
-            <input type="radio" id="Warm" name= "radio" className="modal__radio-input" />
-            <p className="modal__radio-text">Warm</p>
-          </label>
-          <label
-            htmlFor="Cold"
-            className="modal__label modal__label_type_radio"
-          >
-            <input id="Cold" type="radio" name= "radio" className="modal__radio-input" />
-            <p className="modal__radio-text">Cold</p>
-          </label>
-        </fieldset>
-      </ModalWithForm>
-      <ItemModal
-        activeModal={activeModal}
-        card={selectedCard}
-        onClose={closeActiveModal}
-      />
+        <div className="page__content">
+          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                />
+              }
+            />
+            <Route path="/profile" element={<Footer />} />
+          </Routes>
+        </div>
+        <AddItemModal
+          isOpen={activeModal === "add-garment"}
+          onClose={closeActiveModal}
+          onAddItem={handleAddItemSubmit}
+        />
+        <ItemModal
+          activeModal={activeModal}
+          card={selectedCard}
+          onClose={closeActiveModal}
+          handleDeleteItem={handleDeleteItem}
+        />
+      </CurrentTemperatureUnitContext.Provider>
     </div>
   );
 }

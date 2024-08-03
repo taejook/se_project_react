@@ -1,26 +1,41 @@
-.modal__content_type_image{
-    height: 610px;
-    width: 498px;
-    padding: 0;
-    border-radius: 16px;
+.modal__content_type_image {
+  height: 610px;
+  width: 498px;
+  padding: 0;
+  border-radius: 16px;
 }
 
-.modal__image{
-    height: 498px;
-    width: 100%;
-    border-radius: 16px 16px 0px 0px;
+.modal__image {
+  height: 498px;
+  width: 100%;
+  border-radius: 16px 16px 0px 0px;
 }
 
-.modal__close_image{
-    background-color: transparent;
+.modal__close_image {
+  background-color: transparent;
 }
 
-.modal__button-img{
-    background-color: transparent;
-    color: #fff;
+.modal__button-img {
+  background-color: transparent;
+  color: #fff;
 }
 
-.modal__footer{
-    margin: 20px 0 32px 32px;
-    height: 112;
+.modal__footer {
+  margin: 20px 0 32px 32px;
+  height: 112;
 }
+
+.modal__delete {
+  font-weight: 700;
+  color: #ff4d00;
+  font-size: 20px;
+  line-height: 24px;
+  position: absolute;
+  border: none;
+  background-color: #fff;
+  margin-top: 15px;
+}
+
+.modal__delete-btn:hover {
+    cursor: pointer;
+  }

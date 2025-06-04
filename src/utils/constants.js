@@ -22,7 +22,7 @@ export const weatherOptions = [
   {
     day: true,
     condition: "fog",
-    url: new URL("../assets/day/day-fog.svg", import.meta.url).href,
+    url: new URL("../assets/day/day-foggy.svg", import.meta.url).href,
   },
   {
     day: true,
@@ -52,7 +52,7 @@ export const weatherOptions = [
   {
     day: false,
     condition: "fog",
-    url: new URL("../assets/night/night-fog.svg", import.meta.url).href,
+    url: new URL("../assets/night/night-foggy.svg", import.meta.url).href,
   },
   {
     day: false,

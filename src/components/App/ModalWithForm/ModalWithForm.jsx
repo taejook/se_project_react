@@ -22,9 +22,11 @@ function ModalWithForm({
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
           <div className="modal__button-container">
+            {onSubmit && (
             <button type="submit" className="modal__submit">
               {buttonText}
             </button>
+            )}
             {showSecondaryButton && (
                 <button
                   type="button"

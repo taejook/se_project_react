@@ -10,7 +10,7 @@ function Profile({
   handleAddClick,
   clothingItems,
   handleEditProfileClick,
-  handleLogOut
+  handleLogOut,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
   return (

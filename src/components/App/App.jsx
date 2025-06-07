@@ -13,6 +13,7 @@ import AddItemModal from "./AddItemModal/AddItemModal";
 import LoginModal from "./LoginModal/LoginModal";
 import RegisterModal from "./RegisterModal/RegisterModal";
 import EditProfileModal from "./EditProfileModal/EditProfileModal";
+import DeleteModal from "./DeleteModal/DeleteModal";
 import Profile from "./Profile/Profile";
 import ProtectedRoute from "../ProtectedRoutes";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -43,7 +44,6 @@ function App() {
     authorize(values)
       .then((data) => {
         if (data.token) {
-
           localStorage.setItem("jwt", data.token);
           checkToken();
           closeActiveModal();
@@ -131,6 +131,11 @@ function App() {
     setSelectedCard(card);
   };
 
+  const handleDeleteClick = (card) => {
+    setActiveModal("delete");
+    setSelectedCard(card);
+  };
+
   const closeActiveModal = () => {
     setActiveModal("");
   };
@@ -142,6 +147,7 @@ function App() {
   };
 
   const handleDeleteItem = (id) => {
+    console.log("handleDeleteItem called with:", id);
     const token = localStorage.getItem("jwt");
     if (token) {
       return deleteItemById(id, token)
@@ -287,7 +293,7 @@ function App() {
               activeModal={activeModal}
               card={selectedCard}
               onClose={closeActiveModal}
-              handleDeleteItem={handleDeleteItem}
+              onDelete={handleDeleteClick}
             />
           )}
           <LoginModal
@@ -309,6 +315,13 @@ function App() {
             onClose={closeActiveModal}
             onEditProfile={handleEditProfile}
             handleEditProfileClick={handleEditProfileClick}
+          />
+          <DeleteModal
+            isOpen={activeModal === "delete"}
+            onClose={closeActiveModal}
+            onDelete={handleDeleteItem}
+            card={selectedCard}
+            clothingItems={clothingItems}
           />
         </CurrentTemperatureUnitContext.Provider>
         <Footer />

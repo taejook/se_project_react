@@ -6,4 +6,7 @@ Links
 *[Link to the site](https://taejook.github.io/se_project_react/)
 
 Figma Design
-*[Link to the site](https://www.figma.com/design/F03bTb81Pw8IDPj5Y9rc5i/Sprint-10-%7C-WTWR?node-id=568-329&t=OLsxnkjXOXYoyBDO-0)
+*[Link to the site](https://www.figma.com/design/bfVOvqlLmoKZ5lpro8WWBe/Sprint-14_-WTWR?node-id=1-345&t=aZ95FMFFlagCIwQZ-0)
+
+Link to se_project_express
+*[Link to the site](https://github.com/taejook/se_project_express)

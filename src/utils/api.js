@@ -1,7 +1,7 @@
 const baseUrl = "http://localhost:3001";
 const headers = { "Content-Type": "application/json" };
 
-export function checkResponse(res) {
+function checkResponse(res) {
   if (res.ok) {
     return res.json();
   } else {

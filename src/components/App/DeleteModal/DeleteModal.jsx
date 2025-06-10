@@ -19,11 +19,10 @@ function DeleteModal({ isOpen, card, onClose, onDelete }) {
           This action is irreversible
         </p>
       </div>
-       <form className="delete-modal-modal__form">
+       <form className="delete-modal-modal__form" onSubmit={handleSubmit}>
           <button
             className="delete-modal__submit"
             type="submit"
-            onClick={handleSubmit}
           >
             Yes, delete item
           </button>

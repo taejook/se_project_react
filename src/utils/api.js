@@ -1,7 +1,7 @@
 const baseUrl = "http://localhost:3001";
 const headers = { "Content-Type": "application/json" };
 
-function checkResponse(res) {
+export function checkResponse(res) {
   if (res.ok) {
     return res.json();
   } else {
@@ -19,12 +19,10 @@ function deleteItemById(Id, token) {
   return fetch(`${baseUrl}/items/${Id}`, {
     method: "DELETE",
     headers: {
-      headers,
+      ...headers,
       Authorization: `Bearer ${token}`,
     },
-  }).then((res) => {
-    return checkResponse(res);
-  });
+  }).then(checkResponse);
 }
 
 function likeItem(id, token) {
@@ -33,9 +31,7 @@ function likeItem(id, token) {
     headers: {
       Authorization: `Bearer ${token}`,
     }
-  }).then((res) => {
-    return checkResponse(res);
-  });
+  }).then(checkResponse);
 }
 
 function unlikeItem(id, token) {
@@ -44,9 +40,7 @@ function unlikeItem(id, token) {
     headers: {
       Authorization: `Bearer ${token}`,
     }
-  }).then((res) => {
-    return checkResponse(res);
-  });
+  }).then(checkResponse);
 }
 
 function addItem({ name, weather, imageUrl }, token) {
@@ -57,9 +51,7 @@ function addItem({ name, weather, imageUrl }, token) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, weather, imageUrl }),
-  }).then((res) => {
-    return checkResponse(res);
-  });
+  }).then(checkResponse);
 }
 
 export { getItems, addItem, deleteItemById, likeItem, unlikeItem, checkResponse };

@@ -1,3 +1,5 @@
+import { checkResponse } from "./api";
+
 const BASE_URL = 'http://localhost:3001';
 
 export const register = ({ name, avatar, email, password }) => {
@@ -8,12 +10,7 @@ export const register = ({ name, avatar, email, password }) => {
     },
     body: JSON.stringify({ name, avatar, email, password })
   })
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
+  .then(checkResponse);
 };
 
 export const authorize = ({ email, password }) => {
@@ -24,12 +21,7 @@ export const authorize = ({ email, password }) => {
     },
     body: JSON.stringify({ email, password })
   })
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
+  .then(checkResponse);
 };
 
 export const edit = ({ name, avatar }, token) => {
@@ -42,12 +34,7 @@ export const edit = ({ name, avatar }, token) => {
  },
  body: JSON.stringify({ name, avatar })
   })
-  .then((res) => {
- if (res.ok) {
-   return res.json();
- }
- return Promise.reject(`Error: ${res.status}`);
-});
+  .then(checkResponse);
 }
 
 export const getContent = (token) => {
@@ -58,10 +45,5 @@ return fetch(`${BASE_URL}/users/me`, {
    'Authorization': `Bearer ${token}`,
  }
 })
-.then((res) => {
- if (res.ok) {
-   return res.json();
- }
- return Promise.reject(`Error: ${res.status}`);
-});
+.then(checkResponse);
 };

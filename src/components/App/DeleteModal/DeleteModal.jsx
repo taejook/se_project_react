@@ -2,6 +2,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./DeleteModal.css";
 function DeleteModal({ isOpen, card, onClose, onDelete }) {
   const handleSubmit = (e) => {
+    console.log("handleSubmit called");
     e.preventDefault();
     onDelete(card._id);
     console.log("Card ID:", card._id);
@@ -21,7 +22,7 @@ function DeleteModal({ isOpen, card, onClose, onDelete }) {
        <form className="delete-modal-modal__form">
           <button
             className="delete-modal__submit"
-            type="button"
+            type="submit"
             onClick={handleSubmit}
           >
             Yes, delete item

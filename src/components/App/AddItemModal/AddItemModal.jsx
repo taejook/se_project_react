@@ -13,6 +13,12 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
     console.log({ values });
   };
 
+useEffect(() => {
+  if (isOpen) {
+    setValues({ name: "", imageUrl: "", weather: "" });
+  }
+}, [isOpen]);
+
   return (
     <ModalWithForm
       title="New Garment"

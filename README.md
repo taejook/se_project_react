@@ -1,6 +1,6 @@
 WTWR (What to Wear?)
 About the project
-The idea of the application is pretty simple - we make a call to an API, which then responds with the daily weather forecast. We collect the weather data, process it, and then based on the forecast, we recommend suitable clothing to the user.
+WTWR (What to Wear) is a full-stack web application designed to provide users with clothing recommendations based on real-time weather data. By fetching weather information from a Weather API, WTWR helps users decide what to wear according to the current weather conditions. This phase of the project focuses on developing the front end of the application using React, emphasizing the core principles of React to create a responsive and intuitive user interface.
 
 Links
 *[Link to the site](https://taejook.github.io/se_project_react/)

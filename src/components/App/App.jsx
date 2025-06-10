@@ -1,9 +1,16 @@
+import "./App.css";
 import { useEffect, useState, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-
-import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import {
+  getItems,
+  addItem,
+  deleteItemById,
+  likeItem,
+  unlikeItem,
+} from "../../utils/api";
+import { register, authorize, getContent, edit } from "../../utils/auth";
 import Header from "./Header/Header";
 import ModalWithForm from "./ModalWithForm/ModalWithForm";
 import Main from "./Main/Main";
@@ -17,15 +24,8 @@ import DeleteModal from "./DeleteModal/DeleteModal";
 import Profile from "./Profile/Profile";
 import ProtectedRoute from "../ProtectedRoutes";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import {
-  getItems,
-  addItem,
-  deleteItemById,
-  likeItem,
-  unlikeItem,
-} from "../../utils/api";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import { register, authorize, getContent, edit } from "../../utils/auth";
+
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -275,6 +275,8 @@ function App() {
                       handleAddClick={handleAddClick}
                       handleEditProfileClick={handleEditProfileClick}
                       handleLogOut={handleLogOut}
+                      handleCardLike={handleCardLike}
+                      isLoggedIn={isLoggedIn}
                     />
                   </ProtectedRoute>
                 }

@@ -11,8 +11,16 @@ function Profile({
   clothingItems,
   handleEditProfileClick,
   handleLogOut,
+  handleCardLike,
+  isLoggedIn
 }) {
   const { currentUser } = useContext(CurrentUserContext);
+  const userClothingItems = clothingItems.filter((item) => {
+    if (item.owner === currentUser._id){
+      return true;
+    }
+    return false;
+  });
   return (
     <div className="profile">
       <section className="profile__sidebar">
@@ -24,8 +32,11 @@ function Profile({
       <section className="profile__clothing">
         <ClothesSection
           handleCardClick={handleCardClick}
-          clothingItems={clothingItems}
+          clothingItems={userClothingItems}
           handleAddClick={handleAddClick}
+          currentUser={currentUser}
+          handleCardLike={handleCardLike}
+          isLoggedIn={isLoggedIn}
         />
       </section>
     </div>

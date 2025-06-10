@@ -1,6 +1,7 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import Close from "../../../assets/close.svg";
 import "./DeleteModal.css";
-function DeleteModal({ isOpen, card, onClose, onDelete }) {
+function DeleteModal({ onSubmit, isOpen, card, onClose, onDelete }) {
   const handleSubmit = (e) => {
     console.log("handleSubmit called");
     e.preventDefault();
@@ -9,28 +10,27 @@ function DeleteModal({ isOpen, card, onClose, onDelete }) {
     onClose();
   };
   return (
-    <ModalWithForm
-      onClose={onClose}
-      isOpen={isOpen}
-    >
-      <div className="delete__text">
-        <p>
-          Are you sure you want to delete this item?<br></br>
-          This action is irreversible
-        </p>
-      </div>
-       <form className="delete-modal-modal__form" onSubmit={handleSubmit}>
-          <button
-            className="delete-modal__submit"
-            type="submit"
-          >
+    <div className={`modal ${isOpen && "modal_open"}`}>
+      <div className="modal__content">
+        <button onClick={onClose} className="modal__close" type="button">
+          <img src={Close} alt="close button" className="modal__button-img" />
+        </button>
+        <div className="delete__text">
+          <p>
+            Are you sure you want to delete this item?<br></br>
+            This action is irreversible
+          </p>
+        </div>
+        <form className="delete-modal-modal__form" onSubmit={handleSubmit}>
+          <button className="delete-modal__submit" type="submit">
             Yes, delete item
           </button>
           <button className="cancel__submit" type="button" onClick={onClose}>
             Cancel
           </button>
         </form>
-    </ModalWithForm>
+      </div>
+    </div>
   );
 }
 export default DeleteModal;

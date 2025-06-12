@@ -3,10 +3,8 @@ import Close from "../../../assets/close.svg";
 import "./DeleteModal.css";
 function DeleteModal({ onSubmit, isOpen, card, onClose, onDelete }) {
   const handleSubmit = (e) => {
-    console.log("handleSubmit called");
     e.preventDefault();
     onDelete(card._id);
-    console.log("Card ID:", card._id);
     onClose();
   };
   return (

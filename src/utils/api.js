@@ -10,9 +10,7 @@ function checkResponse(res) {
 }
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => {
-    return checkResponse(res);
-  });
+  return fetch(`${baseUrl}/items`).then(checkResponse);
 }
 
 function deleteItemById(Id, token) {
@@ -30,7 +28,7 @@ function likeItem(id, token) {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
-    }
+    },
   }).then(checkResponse);
 }
 
@@ -39,7 +37,7 @@ function unlikeItem(id, token) {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
-    }
+    },
   }).then(checkResponse);
 }
 
@@ -54,4 +52,11 @@ function addItem({ name, weather, imageUrl }, token) {
   }).then(checkResponse);
 }
 
-export { getItems, addItem, deleteItemById, likeItem, unlikeItem, checkResponse };
+export {
+  getItems,
+  addItem,
+  deleteItemById,
+  likeItem,
+  unlikeItem,
+  checkResponse,
+};

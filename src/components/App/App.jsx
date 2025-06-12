@@ -290,14 +290,12 @@ function App() {
               onAddItem={handleAddItemSubmit}
             />
           )}
-          {isLoggedIn && (
             <ItemModal
               activeModal={activeModal}
               card={selectedCard}
               onClose={closeActiveModal}
               onDelete={handleDeleteClick}
             />
-          )}
           <LoginModal
             isOpen={activeModal === "login"}
             onClose={closeActiveModal}

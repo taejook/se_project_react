@@ -10,7 +10,6 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onAddItem(values);
-    console.log({ values });
   };
 
 useEffect(() => {

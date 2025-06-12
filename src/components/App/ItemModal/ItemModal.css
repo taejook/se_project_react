@@ -47,3 +47,8 @@
 .modal__delete:hover {
   cursor: pointer;
 }
+
+.modal__delete_hidden{
+  cursor: none;
+  visibility: hidden;
+}

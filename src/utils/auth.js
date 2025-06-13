@@ -24,8 +24,7 @@ export const authorize = ({ email, password }) => {
   .then(checkResponse);
 };
 
-export const edit = ({ name, avatar }, token) => {
-  console.log('Token received in edit function:', token);
+export const updateProfile = ({ name, avatar }, token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: {

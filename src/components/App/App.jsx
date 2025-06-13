@@ -10,7 +10,7 @@ import {
   likeItem,
   unlikeItem,
 } from "../../utils/api";
-import { register, authorize, getContent, edit } from "../../utils/auth";
+import { register, authorize, getContent, updateProfile } from "../../utils/auth";
 import Header from "./Header/Header";
 import ModalWithForm from "./ModalWithForm/ModalWithForm";
 import Main from "./Main/Main";
@@ -90,7 +90,7 @@ function App() {
   const handleEditProfile = (values) => {
     const token = localStorage.getItem("jwt");
     if (token) {
-      return edit(values, token)
+      return updateProfile(values, token)
         .then((data) => {
           console.log("Server response:", data);
           if (data) {

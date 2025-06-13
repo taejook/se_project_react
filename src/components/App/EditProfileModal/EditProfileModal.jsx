@@ -5,20 +5,23 @@ import CurrentUserContext from "../../../contexts/CurrentUserContext";
 
 const EditProfileModal = ({ onClose, onEditProfile, isOpen }) => {
   const { currentUser } = useContext(CurrentUserContext);
-  const [values, setValues] = useState({ name:"", avatar: "" });
+  const [values, setValues] = useState({ name: "", avatar: "" });
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
-      e.preventDefault();
-      onEditProfile(values);
-    };
+    e.preventDefault();
+    onEditProfile(values);
+  };
 
   useEffect(() => {
-    if (isOpen && currentUser){
-      setValues(currentUser?.name, currentUser?.avatar);
+    if (isOpen && currentUser) {
+      setValues({
+        name: currentUser.name || "",
+        avatar: currentUser.avatar || "",
+      });
     }
-  }, [isOpen && currentUser])
+  }, [isOpen, currentUser]);
 
   return (
     <ModalWithForm

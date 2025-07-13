@@ -50,7 +50,7 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
@@ -66,7 +66,7 @@ function App() {
           }
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     }
   };
@@ -82,7 +82,7 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         // Here you might want to add some error handling to show to the user
       });
   };
@@ -99,7 +99,7 @@ function App() {
           }
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
           // Here you might want to add some error handling to show to the user
         });
     }

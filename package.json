@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -r ./dist/* taejook1107@tjswtwr.twilightparadox.com:/home/taejook1107/frontend"
   },
   "dependencies": {
     "mongoose": "^8.12.1",
